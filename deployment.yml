@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: market-code-pagamento
+spec:
+  replicas: 1
+  minReadySeconds: 30
+  selector:
+    matchLabels:
+      app: market-code-pagamento
+  template:
+    metadata:
+      labels:
+        app: market-code-pagamento
+    spec:
+      containers:
+        - name: market-code-pagamento
+          image: gustavodfs/market-code-pagamento
+          env:
+            - name: JDBC_URL
+              value: jdbc:mysql://172.16.48.7:3306/MarketCodePagamento
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: market-code-pagamento
+spec:
+  selector:
+    app: market-code-pagamento
+  ports:
+    - port: 8082
+      targetPort: 8082
+  type: NodePort
