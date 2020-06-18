@@ -18,11 +18,9 @@ spec:
           image: gustavodfs/market-code-pagamento
           env:
             - name: JDBC_URL
-              value: jdbc:mysql://35.202.0.101:3306/MarketCodePagamento
+              value: jdbc:mysql://172.16.48.7:3306/MarketCodePagamento
             - name: CLIENTE_API_URL
-              value: http://market-code-cliente  
-
-
+              value: http://market-code-cliente
 ---
 apiVersion: v1
 kind: Service
